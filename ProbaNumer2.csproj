@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\BBishop.png" />
+    <None Remove="Assets\BBishop.svg" />
+    <None Remove="Assets\BKing.png" />
+    <None Remove="Assets\BKing.svg" />
+    <None Remove="Assets\BKinght.svg" />
+    <None Remove="Assets\BKnight.png" />
+    <None Remove="Assets\BPawn.png" />
+    <None Remove="Assets\BPawn.svg" />
+    <None Remove="Assets\BQueen.png" />
+    <None Remove="Assets\BQueen.svg" />
+    <None Remove="Assets\BRook.png" />
+    <None Remove="Assets\BRook.svg" />
+    <None Remove="Assets\Food.png" />
+    <None Remove="Assets\WB.svg" />
+    <None Remove="Assets\WBishop.png" />
+    <None Remove="Assets\WKing.png" />
+    <None Remove="Assets\WKing.svg" />
+    <None Remove="Assets\WKnight.png" />
+    <None Remove="Assets\WKnight.svg" />
+    <None Remove="Assets\WPawn.png" />
+    <None Remove="Assets\WPawn.svg" />
+    <None Remove="Assets\WQueen.png" />
+    <None Remove="Assets\WQueen.svg" />
+    <None Remove="Assets\WRook.png" />
+    <None Remove="Assets\WRook.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\BBishop.png" />
+    <Resource Include="Assets\BKing.png" />
+    <Resource Include="Assets\BKnight.png" />
+    <Resource Include="Assets\BPawn.png" />
+    <Resource Include="Assets\BQueen.png" />
+    <Resource Include="Assets\BRook.png" />
+    <Resource Include="Assets\Food.png" />
+    <Resource Include="Assets\WBishop.png" />
+    <Resource Include="Assets\WKing.png" />
+    <Resource Include="Assets\WKnight.png" />
+    <Resource Include="Assets\WPawn.png" />
+    <Resource Include="Assets\WQueen.png" />
+    <Resource Include="Assets\WRook.png" />
+  </ItemGroup>
+
+</Project>
