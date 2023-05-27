@@ -40,8 +40,8 @@ namespace ProbaNumer2
         private int CurrentColumn=-100;
         private bool BlackPawnCheck = false;
         private bool WhitePawnCheck = false;
-        private bool WhitePawnCombat = false;
-        private bool BlackPawnCombat = false;
+        private bool WhiteBishiopCheck = false;
+        private bool BlackBishopCheck = false;
         
 
         
@@ -79,19 +79,81 @@ namespace ProbaNumer2
                 }
             }
 
-            System.Windows.Controls.Image Bpawn = new System.Windows.Controls.Image();
-            Bpawn.Source = Images.BPawn;
-            buttons[1, 0].Content = Bpawn;
-
-            System.Windows.Controls.Image Wpawn = new System.Windows.Controls.Image();
-            Wpawn.Source = Images.WPawn;
+            System.Windows.Controls.Image Bpawn0 = new System.Windows.Controls.Image();
+            Bpawn0.Source = Images.BPawn;
 
             System.Windows.Controls.Image Bpawn1 = new System.Windows.Controls.Image();
             Bpawn1.Source = Images.BPawn;
 
-            buttons[1, 0].Content = Bpawn;
+            System.Windows.Controls.Image Bpawn2 = new System.Windows.Controls.Image();
+            Bpawn2.Source = Images.BPawn;
+
+            System.Windows.Controls.Image Bpawn3 = new System.Windows.Controls.Image();
+            Bpawn3.Source = Images.BPawn;
+
+            System.Windows.Controls.Image Bpawn4 = new System.Windows.Controls.Image();
+            Bpawn4.Source = Images.BPawn;
+
+            System.Windows.Controls.Image Bpawn5 = new System.Windows.Controls.Image();
+            Bpawn5.Source = Images.BPawn;
+
+            System.Windows.Controls.Image Bpawn6 = new System.Windows.Controls.Image();
+            Bpawn6.Source = Images.BPawn;
+
+            System.Windows.Controls.Image Bpawn7 = new System.Windows.Controls.Image();
+            Bpawn7.Source = Images.BPawn;
+
+            buttons[1, 0].Content = Bpawn0;
             buttons[1, 1].Content = Bpawn1;
-            buttons[6,0].Content = Wpawn;
+            buttons[1, 2].Content = Bpawn2;
+            buttons[1, 3].Content = Bpawn3;
+            buttons[1, 4].Content = Bpawn4;
+            buttons[1, 5].Content = Bpawn5;
+            buttons[1, 6].Content = Bpawn6;
+            buttons[1, 7].Content = Bpawn7;
+
+            System.Windows.Controls.Image Bbishop0 = new System.Windows.Controls.Image();
+            Bbishop0.Source = Images.BBishop;
+
+            System.Windows.Controls.Image Bbishop1 = new System.Windows.Controls.Image();
+            Bbishop1.Source = Images.BBishop;
+
+            buttons[0, 2].Content = Bbishop0;
+            buttons[0, 5].Content = Bbishop1;
+
+
+            System.Windows.Controls.Image Wpawn0 = new System.Windows.Controls.Image();
+            Wpawn0.Source = Images.WPawn;
+
+            System.Windows.Controls.Image Wpawn1 = new System.Windows.Controls.Image();
+            Wpawn1.Source = Images.WPawn;
+
+            System.Windows.Controls.Image Wpawn2 = new System.Windows.Controls.Image();
+            Wpawn2.Source = Images.WPawn;
+
+            System.Windows.Controls.Image Wpawn3 = new System.Windows.Controls.Image();
+            Wpawn3.Source = Images.WPawn;
+
+            System.Windows.Controls.Image Wpawn4 = new System.Windows.Controls.Image();
+            Wpawn4.Source = Images.WPawn;
+
+            System.Windows.Controls.Image Wpawn5 = new System.Windows.Controls.Image();
+            Wpawn5.Source = Images.WPawn;
+
+            System.Windows.Controls.Image Wpawn6 = new System.Windows.Controls.Image();
+            Wpawn6.Source = Images.WPawn;
+
+            System.Windows.Controls.Image Wpawn7 = new System.Windows.Controls.Image();
+            Wpawn7.Source = Images.WPawn;
+
+            buttons[6, 0].Content = Wpawn0;
+            buttons[6, 1].Content = Wpawn1;
+            buttons[6, 2].Content = Wpawn2;
+            buttons[6, 3].Content = Wpawn3;
+            buttons[6, 4].Content = Wpawn4;
+            buttons[6, 5].Content = Wpawn5;
+            buttons[6, 6].Content = Wpawn6;
+            buttons[6, 7].Content = Wpawn7;
 
             foreach (int row in pos)
             {
@@ -102,7 +164,22 @@ namespace ProbaNumer2
             }
             pos[1,0] = 1;
             pos[1,1] = 1;
-            pos[6, 0] = 11;
+            pos[1,2] = 1;
+            pos[1,3] = 1;
+            pos[1,4] = 1;
+            pos[1,5] = 1;
+            pos[1,6] = 1;
+            pos[1,7] = 1;
+            pos[6,0] = 11;
+            pos[6,1] = 11;
+            pos[6,2] = 11;
+            pos[6,3] = 11;
+            pos[6,4] = 11;
+            pos[6,5] = 11;
+            pos[6,6] = 11;
+            pos[6, 7] = 11;
+            pos[0, 2] = 2;
+            pos[0, 5] = 2;
 
             //WhitePawn Wpawn1 = new WhitePawn();
             //Wpawn1.type = 1; Wpawn1.posX = 1; Wpawn1.posY = 0;
@@ -119,26 +196,37 @@ namespace ProbaNumer2
 
             if(pos[row,column] > 10 && BlackPawnCheck == true )
             {
+
                 BlackPawnAttack(row, column, button);
-                Debug.WriteLine("BBBBBBBBBBAAAAAAAAAAAAAA");
+            
             }
             else if ((pos[row,column]==1 || BlackPawnCheck == true) && WhitePawnCheck == false)
             {
+
                 BlackPawnMove(row, column, button);
-                Debug.WriteLine("BBBBBBBBMMMMMMMMMMMM");
+                
             }
             
 
             if (pos[row, column] < 10 && pos[row, column] > 0 && WhitePawnCheck == true)
             {
+
                 WhitePawnAttack(row, column, button);
-                Debug.WriteLine("WWWWWWWWWWWWAAAAAAAAAAAAAA");
             }
-            else if (pos[row, column] == 11 || WhitePawnCheck == true)
+            else if ((pos[row, column] == 11 || WhitePawnCheck == true) && BlackPawnCheck == false && BlackBishopCheck == false)
             {
+
                 WhitePawnMove(row, column, button);
-                Debug.WriteLine("WWWWWWWWWWWWWWWWMMMMMMMMMMMMM");
+            
             }
+
+            if ((pos[row, column] == 2 || BlackBishopCheck == true) && WhitePawnCheck == false)
+            {
+
+               BlackBishopMove(row, column, button);
+
+            }
+
 
 
 
@@ -146,10 +234,6 @@ namespace ProbaNumer2
 
         private void BlackPawnMove(int row, int column, Button button)
         {
-
-            Debug.WriteLine("Black "+row);
-            
-            Debug.WriteLine("Black "+column);
 
             if (firstClick == null && pos[row, column] == 1)
             {
@@ -275,6 +359,73 @@ namespace ProbaNumer2
                 WhitePawnCheck = false;
             }
 
+        }
+
+        private void BlackBishopMove(int row, int column, Button button)
+        {
+            if (firstClick == null && pos[row, column] == 2)
+            {
+
+                firstClick = button;
+                CurrentRow = row;
+                CurrentColumn = column;
+                BlackBishopCheck = true;
+
+            }
+            else if ((firstClick != null) && (secondClick == null) && ((pos[row, column] == 0) && (Math.Abs(row - CurrentRow) == Math.Abs(column - CurrentColumn))))
+            {
+                int StartRow = 0; int EndRow = 0;
+                int StartColumn = 0; int EndColumn = 0;
+                int path = 0; int i, j; 
+
+                if (row > CurrentRow)
+                {
+                    StartRow = CurrentRow;
+                    EndRow = row;
+                }
+                else
+                {
+                    StartRow = row;
+                    EndRow = CurrentRow;
+                }
+
+                if (column > CurrentColumn)
+                {
+                    StartColumn = CurrentColumn;
+                    EndColumn = column;
+                }
+                else
+                {
+                    StartColumn = column;
+                    EndColumn = CurrentColumn;
+                }
+
+
+                if (true)
+                {
+
+                    secondClick = button;
+
+                    System.Windows.Controls.Image Bbishop = new System.Windows.Controls.Image();
+                    Bbishop.Source = Images.BBishop;
+
+                    buttons[CurrentRow, CurrentColumn].Content = "";
+                    buttons[row, column].Content = Bbishop;
+                    pos[row, column] = 2;
+                    pos[CurrentRow, CurrentColumn] = 0;
+
+                    firstClick = null;
+                    secondClick = null;
+                    BlackBishopCheck = false;
+                }
+            }
+            else
+            {
+                firstClick = null;
+                secondClick = null;
+                BlackBishopCheck = false;
+            }
+ 
         }
 
     }
