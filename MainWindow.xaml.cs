@@ -34,7 +34,6 @@ namespace ProbaNumer2
 
         Button[,] buttons = new Button[8, 8];
         int[,] pos = new int[8, 8];
-        int ClickCount = 0;
         private Button firstClick;
         private Button secondClick;
         private int CurrentRow=-100;
@@ -123,19 +122,19 @@ namespace ProbaNumer2
                 BlackPawnAttack(row, column, button);
                 Debug.WriteLine("BBBBBBBBBBAAAAAAAAAAAAAA");
             }
-            else if (pos[row,column]==1 || BlackPawnCheck == true)
+            else if ((pos[row,column]==1 || BlackPawnCheck == true) && WhitePawnCheck == false)
             {
                 BlackPawnMove(row, column, button);
                 Debug.WriteLine("BBBBBBBBMMMMMMMMMMMM");
             }
             
 
-            if (pos[row, column] < 10 && pos[row, column] > 0)
+            if (pos[row, column] < 10 && pos[row, column] > 0 && WhitePawnCheck == true)
             {
                 WhitePawnAttack(row, column, button);
                 Debug.WriteLine("WWWWWWWWWWWWAAAAAAAAAAAAAA");
             }
-            else if ((pos[row, column] == 11 || WhitePawnCheck == true))
+            else if (pos[row, column] == 11 || WhitePawnCheck == true)
             {
                 WhitePawnMove(row, column, button);
                 Debug.WriteLine("WWWWWWWWWWWWWWWWMMMMMMMMMMMMM");
@@ -157,7 +156,6 @@ namespace ProbaNumer2
 
                 Debug.WriteLine("BLACK FIRST MOVE");
                 firstClick = button;
-                ClickCount = 1;
                 CurrentRow = row;
                 CurrentColumn = column;
                 Debug.WriteLine("Current Row "+CurrentRow);
@@ -181,7 +179,6 @@ namespace ProbaNumer2
                 firstClick = null;
                 secondClick = null;
                 BlackPawnCheck = false;
-                ClickCount = 0;
             }
             else
             {
@@ -189,7 +186,6 @@ namespace ProbaNumer2
                 firstClick = null;
                 secondClick = null;
                 BlackPawnCheck = false;
-                ClickCount = 0;
             }
 
         }
@@ -205,7 +201,6 @@ namespace ProbaNumer2
             {
                 Debug.WriteLine("WHITE FIRST MOVE");
                 firstClick = button;
-                ClickCount = 1;
                 CurrentRow = row;
                 CurrentColumn = column;
                 WhitePawnCheck = true;
@@ -226,7 +221,6 @@ namespace ProbaNumer2
                 firstClick = null;
                 secondClick = null;
                 WhitePawnCheck = false;
-                ClickCount = 0;
             }
 
             else
@@ -235,14 +229,13 @@ namespace ProbaNumer2
                 firstClick = null;
                 secondClick = null;
                 WhitePawnCheck = false;
-                ClickCount = 0;
             }
 
         }
 
         private void WhitePawnAttack(int row, int column,Button button)
         {
-            if ((firstClick != null) && (secondClick == null) && (pos[row,column] < 10 && pos[row,column] < 0 ) && ((column == CurrentColumn + 1 || column == CurrentColumn - 1) && (row == CurrentRow + 1) ))
+            if ((firstClick != null) && (secondClick == null) && (pos[row,column] < 10 && pos[row,column] > 0 ) && ((column == CurrentColumn + 1 || column == CurrentColumn - 1) && (row == CurrentRow - 1) ))
             {
                 Debug.WriteLine("WHITE ATTACK");
                 secondClick = button;
@@ -258,14 +251,13 @@ namespace ProbaNumer2
                 firstClick = null;
                 secondClick = null;
                 WhitePawnCheck = false;
-                ClickCount = 0;
             }
 
         }
 
         private void BlackPawnAttack(int row, int column, Button button)
         {
-            if ((firstClick != null) && (secondClick == null) && (pos[row, column] > 10 && pos[row, column] < 100) && ((column == CurrentColumn + 1 || column == CurrentColumn - 1) && (row == CurrentRow - 1)))
+            if ((firstClick != null) && (secondClick == null) && (pos[row, column] > 10 && pos[row, column] < 100) && ((column == CurrentColumn + 1 || column == CurrentColumn - 1) && (row == CurrentRow + 1)))
             {
                 Debug.WriteLine("BLACK ATTACK");
                 secondClick = button;
@@ -281,7 +273,6 @@ namespace ProbaNumer2
                 firstClick = null;
                 secondClick = null;
                 WhitePawnCheck = false;
-                ClickCount = 0;
             }
 
         }
