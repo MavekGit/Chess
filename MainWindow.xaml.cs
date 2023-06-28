@@ -19,6 +19,8 @@ using System.Windows.Shapes;
 using System.Xml;
 using System.Xml.Schema;
 using System.Diagnostics;
+using System.IO.Ports;
+using System.Threading;
 using ProbaNumer2;
 
 using static System.Net.Mime.MediaTypeNames;
@@ -26,11 +28,11 @@ using System.Reflection.Metadata;
 
 namespace ProbaNumer2
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+
     public partial class MainWindow : Window
     {
+        private SerialPort serialPort;
+
 
         Button[,] buttons = new Button[8, 8];
         int[,] pos = new int[8, 8];
@@ -288,6 +290,9 @@ namespace ProbaNumer2
 
             if (GlobalTurn == false)
             {
+
+                ConnectSerialPort("Hello World");
+
                 Debug.WriteLine("RUCH CZARNYCH " + GlobalTurn);
                 // CZARNY PIONEK BICIE
                 if (pos[row, column] > 10 && BlackPawnCheck == true)
@@ -1421,8 +1426,36 @@ namespace ProbaNumer2
             }
 
         }
+        public void ConnectSerialPort(string message)
+        {
+            // Ustawienia portu szeregowego (Serial)
+            string portName = "COM3";  // Zmień na odpowiedni port, na którym jest podłączony Arduino
+            int baudRate = 9600;
 
+            // Inicjalizacja portu szeregowego
+            serialPort = new SerialPort(portName, baudRate);
 
+            try
+            {
+                serialPort.Open();  // Otwarcie połączenia
 
+                // Wysłanie wiadomości do Arduino
+                serialPort.WriteLine(message);
+
+                // Oczekiwanie na odpowiedź od Arduino
+                string response = serialPort.ReadLine();
+
+                // Wyświetlenie odpowiedzi za pomocą Serial.print() w Arduino
+                Debug.WriteLine("Odpowiedź z Arduino: " + response);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Błąd podczas komunikacji z Arduino: " + ex.Message);
+            }
+            finally
+            {
+                serialPort.Close();  // Zamknięcie połączenia
+            }
+        }
     }
 }
